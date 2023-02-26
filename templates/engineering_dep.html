@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Engineering Department</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	</head>
+
+	<body>
+		
+		<!-- Menu bar -->
+		<div class="menu_bar" id="menu_bar">
+			<ul class="menu">
+				<a href="{{ url_for('home_page') }}" id="home_page_href">Home</a>
+				<a href="{{ url_for('engineering_page') }}" id="engineering_href">Engineering</a>
+				<a href="{{ url_for('marketing_page') }}" id="marketing_href">Marketing</a>
+				<a href="{{ url_for('search_page') }}" id="search_href">Search</a>
+			</ul>
+		</div>
+
+		<!-- Fields for adding a new rows to database -->
+		<form class="field" method="POST">
+			{% for header in headers %}
+				{% if header != "IDX" %}    
+					<p>
+						<input name="text_{{ header }}" for="{{ header }}" type="text">
+						<label>{{ header }}</label>
+					</p>
+				{% endif %}
+			{% endfor %}
+
+			<input type="hidden" name="index">
+			<input type="submit" class="btn btn-dark" value="Add">
+		</form>
+
+		<!-- Employees table -->
+		<table class="employees_table">
+			<!-- Table headers -->
+			<tr>
+				{% for header in headers %}
+					<th>{{ header }}</th>
+				{% endfor %}
+			</tr>
+			
+			<!-- Table data -->
+			{% for row in rows %}
+			<tr>
+				{% for cell in row %}
+					<td>{{ cell }}</td>
+				{% endfor %}
+				
+				<!-- Trash button -->
+				<td id="{{ loop.index }}">
+				<a href="{{ url_for('engineering_delete', idx=loop.index) }}" id="delete_{{ loop.index }}" type="submit">
+				<img src="{{ url_for('static', filename='img/trash.png') }}" alt="Delete" width="20" height="20">
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	</body>
+</html>

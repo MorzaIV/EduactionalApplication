@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Home</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	</head>
+
+	<body>
+		<div class="menu_bar" id="menu_bar">
+			<ul class="menu">
+				<a href="{{ url_for('home_page') }}" id="home_page_href">Home</a>
+				<a href="{{ url_for('engineering_page') }}" id="engineering_href">Engineering</a>
+				<a href="{{ url_for('marketing_page') }}" id="marketing_href">Marketing</a>
+				<a href="{{ url_for('search_page') }}" id="search_href">Search</a>
+			</ul>
+		</div>
+	</body>
+</html>
